@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('admin', function () {
-    return view('admin_template');
+    return view('admin.admin_template');
+});
+Route::get('user', function () {
+    return view('user.user_template');
 });
