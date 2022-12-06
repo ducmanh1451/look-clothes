@@ -13,6 +13,10 @@ a {
     color: #444 !important;
 }
 
+ul {
+    list-style: none;
+}
+
 .promotion-head {
     background-color: #08191F;
     color: #fff;
@@ -25,10 +29,13 @@ a {
 header {
     position: sticky;
     top: 0px;
+    background-color: #fff;
+    z-index: 99999;
 }
 
 .affix {
     border-bottom: 1px solid #d6d6d6;
+    top: -1px;
 }
 
 .logo {
@@ -41,7 +48,11 @@ header {
 }
 
 .main-navbar .level0-item > a {
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.sub-navbar {
+    display: none;
 }
 
 .func-item {
@@ -65,12 +76,10 @@ header {
 
 .main-navbar .btn-search {
     position: absolute;
-    z-index: 1;
     top: 10px;
     right: 10px;
     color: #fff !important;
 }
-
 
 .hidden-menu {
     width: 100%;
@@ -82,20 +91,205 @@ header {
     left: 0;
     right: 0;
     background: #ffffff;
-    z-index: 9999999999;
+    z-index: 99999;
     overflow-y: auto;
     box-sizing: border-box;
 }
 
-.hidden-box-search .btn-search {
+.btn-search-hidden {
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
 
+.input-search-hidden {
+    outline: unset;
+    border: 0;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.input-search-hidden::placeholder {
+    color: #999999 !important; 
+}
+
+.icon-box-hidden i {
+    color: #ccc !important;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.level0-item {
+    position: relative;
+}
+
+.level1-list {
+    position: absolute;
+    min-width: 160px;
+    background: #ffffff;
+    box-shadow: 1px 1px 3px #cccccc;
+    left: 10px;
+    cursor: pointer;
+    display: none;
+    padding-top: 45px;
+}
+
+.level0-item:hover,
+.level0-item:hover .level1-list {
+    display: block;
+}
+
+.level1-item {
+    padding: 15px;
+    position: relative;
+}
+
+.level1-item:hover {
+    background-color: #eee;
+}
+
+.level2-list {
+    position: absolute;
+    min-width: 160px;
+    background: #ffffff;
+    box-shadow: 1px 1px 3px #cccccc;
+    top: 0;
+    left: 161px;
+    cursor: pointer;
+    display: none;
+}
+
+.level1-item:hover,
+.level1-item:hover .level2-list {
+    display: block;
+}
+
+.level2-item {
+    padding: 15px;
+}
+
+.level2-item:hover {
+    background-color: #eee;
+}
+
+.border-bottom {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.border-top {
+    border-top: 1px solid #d6d6d6;
+    margin-top: 10px;
+}
+
+.nav-hidden-item {
+    padding: 10px 0px;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-hidden-item .level0-hidden-item {
+    color: #999999 !important;
+}
+
+.nav-hidden-item .level1-hidden-item {
+    font-weight: 500;
+}
+
+.nav-hidden-angle-down {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    width: 30px;
+}
+
+.navbar-hidden > .nav-hidden-item:hover,
+.navbar-hidden > .nav-hidden-item:hover .level1-hidden-item {
+    background-color: #ebebeb;
+    color: #3c96a7 !important;
+}
+
+.container-extra {
+    padding: 0 30px;
+}
+
+.title-block {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px;
+    font-size: 20px;
+    border-bottom: 1px solid #d6d6d6;
+    font-weight: 500;
+}
+
+.list-products {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-products .list-item {
+    margin-bottom: 55px;
+    padding: 0 10px;
+}
+
+.list-products .list-item .p-image {
+    display: block;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.list-products .list-item .img-sec {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.list-products .list-item .p-name {
+    font-size: 12px;
+    font-family: Montserrat-SemiBold;
+    text-transform: uppercase;
+    margin: 25px 0px 5px;
+}
+
+.list-products .list-item .p-price {
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.list-products .list-item .p-price {
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.list-products .list-item .p-box-color .p-color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 1px;
+    margin-top: 5px;
+}
+
+.list-products .list-item:hover,
+.list-products .list-item:hover .img-sec{
+    display: block;
 }
 
 /* Responsive */
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .main-navbar {
         display: none;
+    }
+    .sub-navbar {
+        display: block;
     }
     .sub-navbar .func-item {
         padding: 0;

@@ -9,6 +9,7 @@ $(document).ready(function () {
 
 function initialize() {
     try {
+        $(this).scrollTop(0);
     } catch (e) {
         alert('initialize: ' + e.message);
     }
@@ -25,10 +26,10 @@ function initEvents() {
                 $('header').removeClass('affix');
             }
         });
-        $(document).on('click', '#open-btn', function () {
+        $(document).on('click', '#btn-open-hidden-box', function () {
             $('.hidden-menu').removeClass('d-none');
         });
-        $(document).on('click', '#close-btn', function() {
+        $(document).on('click', '#btn-close-hidden-box', function() {
             $('.hidden-menu').addClass('d-none');
         });
     } catch (e) {
