@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('title', 255)->nullable()->comment('Title');
             $table->float('price')->nullable()->comment('Price');
             $table->string('color', 255)->nullable()->comment('Color');
+            $table->tinyInteger('is_new_product')->default(0)->comment('Is new product or not');
             $table->string('size', 5)->nullable()->comment('Size');
             $table->string('image', 255)->nullable()->comment('Image');
             $table->float('discount')->nullable()->comment('Discount');
-            $table->integer('quantity')->nullable()->comment('Quantity');
             $table->index('category_id');
             $table->timestamps();
             $table

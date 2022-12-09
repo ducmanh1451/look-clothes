@@ -1,0 +1,25 @@
+.sub-images {
+    padding: 0;    
+    position: relative;
+}
+.sub-images li {
+    margin-bottom: 15px;
+}
+.sub-images img {
+    width: 80px;
+    height: 120px;
+}
+.main-images {
+    padding: 0;    
+}
+.main-images li {
+    margin-bottom: 15px;
+}
+.main-images img {
+    width: 500px;
+    height: 750px;
+}
+.sub-images-fixed {
+    position: fixed !important;
+    top: 100px !important;
+}

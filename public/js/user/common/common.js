@@ -1,3 +1,9 @@
+jQuery.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+});
+
 $(document).ready(function () {
     try {
         initialize();
@@ -31,6 +37,22 @@ function initEvents() {
         });
         $(document).on('click', '#btn-close-hidden-box', function() {
             $('.hidden-menu').addClass('d-none');
+        });
+        $(document).on('click', '.category-parent', function() {
+            var category_parent_id = $(this).attr('category-parent-id');
+            var path_nm = window.location.pathname;
+            window.location = `${path_nm}?parent-id=${category_parent_id}`;
+        });
+        $(document).on('click', '.category', function() {
+            var category_id = $(this).attr('category-id');
+            var path_nm = window.location.pathname;
+            window.location = `${path_nm}?category-id=${category_id}`;
+        });
+        $(document).on('click', '.btn-search', function() {
+            var string = $(this).parents('.search-box').find('.input-search').val();
+            var path_nm = window.location.pathname;
+            // window.location = `${path_nm}?string=${string}`;
+            window.location = `san-pham/?string=${string}`;
         });
     } catch (e) {
         alert('initialize: ' + e.message);

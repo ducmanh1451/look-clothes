@@ -6,6 +6,7 @@ body {
     line-height: 20px;
     color: #444;
     box-sizing: border-box;
+    position: relative;
 }
 
 a {
@@ -58,6 +59,7 @@ header {
 .func-item {
     padding-left: 30px;
     vertical-align: middle;
+    position: relative;
 }
 
 .main-navbar .form-search {
@@ -282,6 +284,31 @@ header {
     display: block;
 }
 
+.page-link-selected {
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+}
+
+.menu-footer {
+    padding: 0;
+    margin: 0;
+} 
+
+.menu-footer a {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.menu-footer a:hover {
+    text-decoration: underline !important;
+    color: #999 !important;
+}
+
+footer {
+    padding-bottom: 50px;
+}
+
 /* Responsive */
 
 @media (max-width: 992px) {
@@ -294,6 +321,15 @@ header {
     .sub-navbar .func-item {
         padding: 0;
         font-size: 20px;
+    }
+    .regis-ministry-img {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .regis-ministry-menu {
+        display: none;
     }
 }
 

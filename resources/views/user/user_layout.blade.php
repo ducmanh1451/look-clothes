@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('meta_title', 'Look Store')</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     {{-- Bootstrap --}}
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
     {{-- Common User --}}
-    <link rel="stylesheet" href="css/user/common/common.css">
+    <link rel="stylesheet" href="{{ asset('css/user/common/common.css') }}">
     @yield('asset_header')
 </head>
 
@@ -29,82 +29,51 @@
             <div class="container-fluid p-0 main-navbar">
                 <nav class="navbar navbar-expand-lg navbar-light pt-4 pb-4">
                     <div class="container-fluid">
-                        <a class="navbar-brand logo" href="/">
-                            <img class="img-fluid" src="images/logo.png">
+                        <a class="navbar-brand logo" href="{{ route('products') }}">
+                            <img class="img-fluid" src="{{ asset('images/logo.png') }}">
                         </a>
                         <div class="navbar-collapse justify-content-between">
                             {{-- Default Menu --}}
                             <div class="main-menu">
                                 <ul class="navbar-nav">
                                     <li class="level0-item">
-                                        <a class="nav-link" aria-current="page" href="/san-pham">Sản phẩm mới</a>
+                                        <a class="nav-link" aria-current="page" href="{{ route('new-products') }}">Sản phẩm
+                                            mới</a>
                                     </li>
                                     <li class="level0-item">
-                                        <a class="nav-link" href="/san-pham">Bộ sưu tập</a>
+                                        <a class="nav-link" href="{{ route('search-products') }}">Bộ sưu tập</a>
+                                        @php
+                                            use App\Models\CategoryParents;
+                                            use App\Models\Categories;
+                                            $categoryParents = CategoryParents::all();
+                                        @endphp
                                         <ul class="level1-list p-0">
+                                            @foreach ($categoryParents as $categoryParentItem)
+                                                <li class="level1-item border-bottom">
+                                                    <a class="category-parent"
+                                                        category-parent-id="{{ $categoryParentItem->id }}">
+                                                        {{ $categoryParentItem->category_parent_nm }}
+                                                    </a>
+                                                    @php
+                                                        $categories = Categories::where('category_parent_id', $categoryParentItem->id)->get();
+                                                    @endphp
+                                                    <ul class="level2-list p-0">
+                                                        @foreach ($categories as $category)
+                                                            <li class="level2-item border-bottom">
+                                                                <a class="category"
+                                                                    category-id="{{ $category->id }}">{{ $category->category_nm }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
                                             <li class="level1-item border-bottom">
-                                                <a href="/ao-so-mi-p1">Shirts/Top</a>
-                                                <ul class="level2-list p-0">
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-phong">T-shirts</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-so-mi-p2">Shirts</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-polo">Polo Shirts</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1-item border-bottom">
-                                                <a href="/quan-p1">Pants</a>
-                                                <ul class="level2-list p-0">
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/quan-short">Shorts</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/quan-p2">Pants</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/quan-jean">Jeans</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1-item border-bottom">
-                                                <a href="/sweater-p1">Sweater</a>
-                                                <ul class="level2-list p-0">
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/hoodie">Hoodie</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/sweater-p2">Sweater</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1-item border-bottom">
-                                                <a href="/ao-khoac-p1">Coats & Jackets</a>
-                                                <ul class="level2-list p-0">
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-khoac-gio">Windbreaker</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-khoac-p2">Jackets</a>
-                                                    </li>
-                                                    <li class="level2-item border-bottom">
-                                                        <a href="/ao-khoac-ngoai">Coats</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1-item border-bottom">
-                                                <a href="/picked-by-look">Picked by Look</a>
-                                            </li>
-                                            <li class="level1-item border-bottom">
-                                                <a href="/accessories">Accessories</a>
+                                                <a class="category-parent">Picked by Look</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="level0-item">
-                                        <a class="nav-link" href="/san-pham-sale">Sale</a>
+                                        <a class="nav-link" href="{{ route('sale-products') }}">Sale</a>
                                     </li>
                                     <li class="level0-item">
                                         <a class="nav-link" href="/gioi-thieu">Về chúng tôi</a>
@@ -127,13 +96,11 @@
                             </div>
                             <div class="main-funcs d-flex align-items-center">
                                 <div class="search-box func-item">
-                                    <form id="form-search" class="form-search" name="form-search" method="post">
-                                        <input class="input-search" type="text" id="keyword" name="keyword"
-                                            autocomplete="off">
-                                        <a class="btn-search">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </form>
+                                    <input class="input-search" type="text" id="keyword" name="keyword"
+                                        autocomplete="off">
+                                    <a class="btn-search">
+                                        <i class="fa fa-search"></i>
+                                    </a>
                                 </div>
                                 <a class="func-item" href="/dang-nhap">Đăng nhập</a>
                                 <a class="func-item">
@@ -153,7 +120,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                             <a class="navbar-brand logo" href="/">
-                                <img class="img-fluid" src="images/logo.png">
+                                <img class="img-fluid" src="{{ asset('images/logo.png') }}">
                             </a>
                             <a class="func-item">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -176,24 +143,21 @@
         {{-- Hidden Menu --}}
         <div class="hidden-menu d-none">
             <div class="container-fluid p-3 d-flex flex-column">
-                <div class="hidden-box-search d-flex justify-content-between border-bottom">
-                    <form id="form-search-hidden" class="form-search-hidden d-flex" name="form-search-hidden"
-                        method="post">
-                        <a id="btn-search-hidden" class="icon-box-hidden pr-5">
-                            <i class="fa fa-search"></i>
-                        </a>
-                        <input class="input-search-hidden" type="text" id="keyword" name="keyword"
-                            autocomplete="off" placeholder="Gõ từ khóa tìm kiếm">
-                    </form>
+                <div class="search-box d-flex justify-content-between border-bottom">
+                    <a id="btn-search btn-search-hidden" class="icon-box-hidden pr-5">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <input class="input-search input-search-hidden" type="text" id="keyword" name="keyword"
+                        autocomplete="off" placeholder="Gõ từ khóa tìm kiếm">
                     <a id="btn-close-hidden-box" class="icon-box-hidden">
                         <i class="fa fa-times"></i>
                     </a>
                 </div>
                 <div class="nav-hidden-item border-bottom">
-                    <a class="level0-hidden-item" href="/san-pham">Sản phẩm mới</a>
+                    <a class="level0-hidden-item" href="{{ route('new-products') }}">Sản phẩm mới</a>
                 </div>
                 <div class="nav-hidden-item border-bottom">
-                    <a class="level0-hidden-item" href="/san-pham">Bộ sưu tập</a>
+                    <a class="level0-hidden-item" href="{{ route('search-products') }}">Bộ sưu tập</a>
                     <a class="nav-hidden-angle-down" data-bs-toggle="collapse" data-bs-target="#collection">
                         <i class="fa fa-angle-down"></i>
                     </a>
@@ -201,10 +165,10 @@
                 <div class="border-bottom pb-0 collapse" id="collection" style="margin-left: 15px !important">
                     <ul class="navbar-nav navbar-hidden">
                         <li class="nav-hidden-item border-bottom">
-                            <a class="level1-hidden-item" href="/ao-so-mi-p1">Shirts/Top</a>
+                            <a class="level1-hidden-item">Shirts/Top</a>
                         </li>
                         <li class="nav-hidden-item border-bottom">
-                            <a class="level1-hidden-item" href="/quan-p1">Pants</a>
+                            <a class="level1-hidden-item">Pants</a>
                         </li>
                         <li class="nav-hidden-item border-bottom">
                             <a class="level1-hidden-item" href="/sweater-p1">Sweater</a>
@@ -221,7 +185,7 @@
                     </ul>
                 </div>
                 <div class="nav-hidden-item border-bottom">
-                    <a class="level0-hidden-item" href="/san-pham-sale">Sale</a>
+                    <a class="level0-hidden-item" href="{{ route('sale-products') }}">Sale</a>
                 </div>
                 <div class="nav-hidden-item border-bottom">
                     <a class="level0-hidden-item" href="/gioi-thieu">Về chúng tôi</a>
@@ -251,14 +215,79 @@
             </div>
         </div>
         {{-- End Hidden Menu --}}
+
+        {{-- Footer --}}
+        <footer>
+            <div class="container-fluid">
+                <div class="container-extra">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border-top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-lg-2 col-md-6 col-xs-12">
+                            <ul class="menu-footer">
+                                <li>
+                                    <a href="#">Chính sách vận chuyển</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chính sách thanh toán</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chính sách hỗ trợ</a>
+                                </li>
+                                <li>
+                                    <a href="#">Hệ thống dịch vụ </a>
+                                </li>
+                                <li>
+                                    <a href="#">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-xs-12">
+                            <ul class="menu-footer">
+                                <li>
+                                    <a href="#">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="#">Instagram</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-md-12 regis-ministry-menu">
+                            <div class="row justify-content-end">
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    Theo dõi chúng tôi để nhận thông tin mới
+                                </div>
+                                <div class="col-lg-4 regis-ministry-img">
+                                    <ul class="menu-footer">
+                                        <li>
+                                            <a href="/">
+                                                <img src="{{ asset('images/regis-ministry.png') }}" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <span>© LOOK 2020. All rights reserved</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {{-- End Footer --}}
     </div>
 
     <!-- jQuery -->
-    <script src="plugins/jquery/js/jquery.min.js"></script>
+    <script src="{{ asset('plugins/jquery/js/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     {{-- Common User --}}
-    <script src="js/user/common/common.js"></script>
+    <script src="{{ asset('js/user/common/common.js') }}"></script>
     @yield('asset_footer')
 </body>
 

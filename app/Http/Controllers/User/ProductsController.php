@@ -2,71 +2,103 @@
 
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use App\Models\Products;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
     /**
-     * Show the products index (get all products)
-     * @author manhnd
-     * @created at 2022-12-06
-     * @return View
+     * Get all products
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data_table = [
-            [
-                'id' => '1',
-                'product_cd' => 'P5-001',
-                'product_nm' => 'IDLE CLUB WINDTRACK PANT',
-                'category_id' => '5',
-                'title' => 'IDLE CLUB WINDTRACK PANT',
-                'price' => '449000',
-                'color' => '#ee6aa7, #4b98d5',
-                'image' => '_166929176911_1.jpg, _16692917186_1.jpg',
-            ],
-            [
-                'id' => '2',
-                'product_cd' => 'P10-001',
-                'product_nm' => 'IDLE FLEECE JACKET',
-                'category_id' => '10',
-                'title' => 'IDLE FLEECE JACKET',
-                'price' => '699000',
-                'color' => '#000000',
-                'image' => '33.jpg',
-            ],
-            [
-                'id' => '3',
-                'product_cd' => 'P2-001',
-                'product_nm' => 'KOEN SHIRT',
-                'category_id' => '2',
-                'title' => 'KOEN SHIRT',
-                'price' => '450000',
-                'color' => '#ed0000',
-                'image' => '38.jpg',
-            ],
-            [
-                'id' => '4',
-                'product_cd' => 'P10-002',
-                'product_nm' => 'IDLE WATERPROOF JACKET',
-                'category_id' => '10',
-                'title' => 'IDLE WATERPROOF JACKET',
-                'price' => '899000',
-                'color' => '#000000',
-                'image' => '44.jpg',
-            ],
-        ];
-
-        // $this->combineColor($data_table);
-        return view('user.pages.products', ['products' => $data_table]);
+        $products = Products::paginate(6, ['*'], 'page')->withQueryString();
+        if ($products->isEmpty()) {
+            return view('error.not_find_product');
+        }
+        return view('user.pages.products', 
+        [
+            'products' => $products,
+            'title' => 'Sản phẩm'
+        ]);
     }
 
-    public function combineColor($data_table)
+    /**
+     * Find products by category_id, category_parent_id, string
+     */
+    public function search(Request $request)
     {
-        foreach ($data_table as $item) {
-            if (str_contains($item['color'], ',') || str_contains($item['image'], ',')) {
-                $array = explode(' ', str_replace(',', '', $item['color']));
-                $item['color'] = $array;
-            }
+        $products = Products::ofProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        $title = $this->getTitlePage($request, $products[0]);
+        if ($products->isEmpty()) {
+            return view('error.not_find_product');
+        }
+        return view('user.pages.products', 
+        [
+            'products' => $products,
+            'title' => $title
+        ]);
+    }
+    
+    /**
+     * Get all new products
+     */
+    public function getNewProduct(Request $request)
+    {
+        $products = Products::ofNewProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        if ($products->isEmpty()) {
+            return view('error.not_find_product');
+        }
+        return view('user.pages.products', 
+        [
+            'products' => $products,
+            'title' => 'Sản phẩm mới'
+        ]);
+    }
+
+    /**
+     * Get all new products
+     */
+    public function getSaleProduct(Request $request)
+    {
+        $products = Products::ofSaleProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        if ($products->isEmpty()) {
+            return view('error.not_find_product');
+        }
+        return view('user.pages.products', 
+        [
+            'products' => $products,
+            'title' => 'Sản phẩm Sale'
+        ]);
+    }
+
+    /**
+     * Get all new products
+     */
+    public function detail(Request $request)
+    {
+        $product = Products::find($request->segment(3));
+        // dd($product);
+        if (is_null($product)) {
+            return view('error.500');
+        }
+        return view('user.pages.detail', 
+        [
+            'product' => $product,
+            'title' => 'Chi tiết sản phẩm'
+        ]);
+    }
+
+    /**
+     * Get title page
+     */
+    public function getTitlePage(Request $request, $product)
+    {
+        if (!empty($request['parent-id'])) {
+            return $product->categories->categoryParents->category_parent_nm;
+        }
+        else if (!empty($request['category-id'])) {
+            return $product->categories->category_nm;
         }
     }
 }
