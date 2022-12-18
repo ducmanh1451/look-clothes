@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProductsController;
+use App\Http\Controllers\User\CartShoppingController;
+use App\Http\Controllers\User\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,9 @@ Route::group(['prefix' => 'san-pham'], function () {
     Route::get('/chi-tiet/{id}', [ProductsController::class, 'detail'])->name('detail-products');
 });
 Route::get('/san-pham-sale', [ProductsController::class, 'getSaleProduct'])->name('sale-products');
+
+Route::get('/cart-shopping', [CartShoppingController::class, 'getCartShopping'])->name('get-cart-shopping');
+Route::post('/add-cart-shopping', [CartShoppingController::class, 'addCartShopping'])->name('add-cart-shopping');
+Route::post('/update-cart-shopping', [CartShoppingController::class, 'updateCartShopping'])->name('update-cart-shopping');
+
+Route::get('/dat-hang', [OrdersController::class, 'index'])->name('orders');

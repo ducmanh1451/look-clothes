@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
+    {{-- Sweetalert2 --}}
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/css/sweetalert2.min.css') }}">
     {{-- Common User --}}
     <link rel="stylesheet" href="{{ asset('css/user/common/common.css') }}">
     @yield('asset_header')
@@ -32,7 +34,7 @@
                         <a class="navbar-brand logo" href="{{ route('products') }}">
                             <img class="img-fluid" src="{{ asset('images/logo.png') }}">
                         </a>
-                        <div class="navbar-collapse justify-content-between">
+                        <div class="navbar-collapse justify-content-between position-relative">
                             {{-- Default Menu --}}
                             <div class="main-menu">
                                 <ul class="navbar-nav">
@@ -103,9 +105,12 @@
                                     </a>
                                 </div>
                                 <a class="func-item" href="/dang-nhap">Đăng nhập</a>
-                                <a class="func-item">
+                                <a class="func-item open-cart-btn" data-bs-toggle="collapse" href="#collapse-cart" role="button">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
+                            </div>
+                            <div id="collapse-cart" class="collapse collapse-cart">
+                                {{-- @include('user.pages.cart_shopping') --}}
                             </div>
                             {{-- End Default Menu --}}
                         </div>
@@ -122,7 +127,7 @@
                             <a class="navbar-brand logo" href="/">
                                 <img class="img-fluid" src="{{ asset('images/logo.png') }}">
                             </a>
-                            <a class="func-item">
+                            <a class="func-item open-cart-btn">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>
@@ -220,7 +225,7 @@
         <footer>
             <div class="container-fluid">
                 <div class="container-extra">
-                    <div class="row">
+                    <div class="row pt-5">
                         <div class="col-12">
                             <div class="border-top">
                             </div>
@@ -286,6 +291,8 @@
     <script src="{{ asset('plugins/jquery/js/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- Sweetalert2 --}}
+    <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.all.min.js') }}"></script>
     {{-- Common User --}}
     <script src="{{ asset('js/user/common/common.js') }}"></script>
     @yield('asset_footer')

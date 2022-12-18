@@ -31,7 +31,7 @@ header {
     position: sticky;
     top: 0px;
     background-color: #fff;
-    z-index: 99999;
+    z-index: 999;
 }
 
 .affix {
@@ -60,6 +60,38 @@ header {
     padding-left: 30px;
     vertical-align: middle;
     position: relative;
+    cursor: pointer;
+}
+
+.collapse-cart {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    border: 1px solid #d6d6d6;
+    border-radius: 3.5px;
+    z-index: 99;
+    background-color: #fff;
+    width: 550px;
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.cart-items .item {
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.cart-items img {
+    width: 100%;
+    height: 100%;
+}
+
+.total-money {
+    float: right;
 }
 
 .main-navbar .form-search {
@@ -93,7 +125,7 @@ header {
     left: 0;
     right: 0;
     background: #ffffff;
-    z-index: 99999;
+    z-index: 999;
     overflow-y: auto;
     box-sizing: border-box;
 }
@@ -224,6 +256,27 @@ header {
     font-weight: 500;
 }
 
+.go-to-cart {
+    margin-top: 25px;
+    height: 40px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.go-to-cart a{
+    color: #fff !important;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.close-icon {
+    cursor: pointer;
+}
+
 .list-products {
     margin-top: 50px;
     display: flex;
@@ -303,6 +356,22 @@ header {
 .menu-footer a:hover {
     text-decoration: underline !important;
     color: #999 !important;
+}
+
+.bs-input {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    border-radius: 16px;
+    height: 40px;
+    width: 100%;
+    padding: 5px 20px;
+    transition: all .2s;
+    outline: unset;
+}
+
+.bs-input:active, .bs-input:focus  {
+    border: 1px solid #2f5acf !important;
 }
 
 footer {

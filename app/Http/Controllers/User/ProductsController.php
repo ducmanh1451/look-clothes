@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
+
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -16,10 +17,9 @@ class ProductsController extends Controller
         if ($products->isEmpty()) {
             return view('error.not_find_product');
         }
-        return view('user.pages.products', 
-        [
+        return view('user.pages.products', [
             'products' => $products,
-            'title' => 'Sản phẩm'
+            'title' => 'Sản phẩm',
         ]);
     }
 
@@ -28,31 +28,33 @@ class ProductsController extends Controller
      */
     public function search(Request $request)
     {
-        $products = Products::ofProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        $products = Products::ofProduct($request)
+            ->paginate(6, ['*'], 'page')
+            ->withQueryString();
         $title = $this->getTitlePage($request, $products[0]);
         if ($products->isEmpty()) {
             return view('error.not_find_product');
         }
-        return view('user.pages.products', 
-        [
+        return view('user.pages.products', [
             'products' => $products,
-            'title' => $title
+            'title' => $title,
         ]);
     }
-    
+
     /**
      * Get all new products
      */
     public function getNewProduct(Request $request)
     {
-        $products = Products::ofNewProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        $products = Products::ofNewProduct($request)
+            ->paginate(6, ['*'], 'page')
+            ->withQueryString();
         if ($products->isEmpty()) {
             return view('error.not_find_product');
         }
-        return view('user.pages.products', 
-        [
+        return view('user.pages.products', [
             'products' => $products,
-            'title' => 'Sản phẩm mới'
+            'title' => 'Sản phẩm mới',
         ]);
     }
 
@@ -61,14 +63,15 @@ class ProductsController extends Controller
      */
     public function getSaleProduct(Request $request)
     {
-        $products = Products::ofSaleProduct($request)->paginate(6, ['*'], 'page')->withQueryString();
+        $products = Products::ofSaleProduct($request)
+            ->paginate(6, ['*'], 'page')
+            ->withQueryString();
         if ($products->isEmpty()) {
             return view('error.not_find_product');
         }
-        return view('user.pages.products', 
-        [
+        return view('user.pages.products', [
             'products' => $products,
-            'title' => 'Sản phẩm Sale'
+            'title' => 'Sản phẩm Sale',
         ]);
     }
 
@@ -78,14 +81,12 @@ class ProductsController extends Controller
     public function detail(Request $request)
     {
         $product = Products::find($request->segment(3));
-        // dd($product);
         if (is_null($product)) {
             return view('error.500');
         }
-        return view('user.pages.detail', 
-        [
+        return view('user.pages.detail', [
             'product' => $product,
-            'title' => 'Chi tiết sản phẩm'
+            'title' => 'Chi tiết sản phẩm',
         ]);
     }
 
@@ -96,9 +97,9 @@ class ProductsController extends Controller
     {
         if (!empty($request['parent-id'])) {
             return $product->categories->categoryParents->category_parent_nm;
-        }
-        else if (!empty($request['category-id'])) {
+        } elseif (!empty($request['category-id'])) {
             return $product->categories->category_nm;
         }
     }
+    
 }

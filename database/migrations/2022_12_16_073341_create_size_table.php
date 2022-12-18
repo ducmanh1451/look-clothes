@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_parents', function (Blueprint $table) {
+        Schema::create('size', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            // $table->string('category_parent_cd', 10)->nullable()->comment('Category Parent Code');
-            $table->string('category_parent_nm', 255)->nullable()->comment('Category Parent Name');
+            $table->string('size_nm', 100)->nullable()->comment('Size Name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_parents');
+        Schema::dropIfExists('size');
     }
 };

@@ -1,3 +1,6 @@
+@php
+    use App\Models\Colors;
+@endphp
 @extends('user.user_layout')
 @section('meta_title', $title)
 
@@ -17,8 +20,7 @@
                 </div>
                 <div class="list-products row">
                     @foreach ($products as $product)
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 list-item" product_id="{{ $product['id'] }}"
-                            product_cd="{{ $product['product_cd'] }}">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 list-item" product_id="{{ $product['id'] }}">
                             <a href="" class="p-image" title="{{ $product['title'] }}">
                                 @php
                                     $image_arr = explode(' ', str_replace(',', '', $product['image']));
@@ -29,8 +31,11 @@
                             <h3 class="p-name">
                                 <a href="{{ route('detail-products', $product['id']) }}" title="{{ $product['title'] }}"
                                     class="name">{{ $product['product_nm'] }}</a>
+                                @if ($product['is_new_product'] == 1) 
+                                <img style="width: 20px; height: 20px" src="{{ asset('images/new-product.png')}}" alt="">
+                                @endif
                             </h3>
-                            <p class="p-price">{{ $product['price'] }}</p>
+                            <p class="p-price">{{ $product['price'] }} VND</p>
                             <p class="p-box-color">
                                 @php
                                     $color_arr = explode(' ', str_replace(',', '', $product['color']));
@@ -38,7 +43,7 @@
                                 @endphp
                                 @foreach ($color_arr as $color_item)
                                     <a class="p-color" href="" title="{{ $title }}"
-                                        style="background:  {{ $color_item }};"></a>
+                                        style="background:  {{ Colors::getColorHexCode($color_item) }};"></a>
                                 @endforeach
                             </p>
                         </div>
