@@ -81,14 +81,39 @@ function initEventsDetail() {
             $('.size').removeClass('size-active');
             $(this).addClass('size-active');
             $('[name="size"]').val($(this).attr('data-size'));
+            checkAvailableProduct();
         });
         // choose color of product
         $(document).on('click', '.color', function () {
             $('.color').removeClass('color-active');
             $(this).addClass('color-active');
             $('[name="color"]').val($(this).attr('data-color'));
+            checkAvailableProduct();
         });
     } catch (e) {
         alert('initializeDetail: ' + e.message);
     }
+}
+
+function checkAvailableProduct()
+{
+    $.ajax({
+        type: "POST",
+        url: "/kiem-tra-hang",
+        data: {
+            'product_id': $('#product-id').val(),
+            'color_id': $('[name="color"]').val(),
+            'size_id': $('[name="size"]').val(),
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#total-products-available').text(response.message);
+            if (response.product_available == 0) {
+                $('.quantity-box-btn').addClass('d-none');
+            }
+            else {
+                $('.quantity-box-btn').removeClass('d-none');
+            }
+        }
+    });
 }
