@@ -38,3 +38,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('admin', function () {
     return view('admin.admin_template');
 });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
