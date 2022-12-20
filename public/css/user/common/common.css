@@ -374,6 +374,24 @@ header {
     border: 1px solid #2f5acf !important;
 }
 
+.bs-button {
+    border-radius: 16px;
+    height: 55px;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.bs-button:hover {
+    background-color: #d9d9d9;
+    color: #000;
+}
+
 footer {
     padding-bottom: 50px;
 }

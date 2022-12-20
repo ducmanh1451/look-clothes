@@ -129,6 +129,8 @@
                                                         <i class="fas fa-minus"></i>
                                                     </div>
                                                 </div>
+                                                <div id="total-products-available" style="margin-left: 20px">
+                                                </div>
                                             </div>
                                             {{-- <input id="product-quantity" type="hidden" name="quantity"> --}}
                                         </div>
