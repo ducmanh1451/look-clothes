@@ -21,12 +21,12 @@
                         <li class="breadcrumb-item"><a href="{{ route('products') }}">Trang chủ</a></li>
                         <li class="breadcrumb-item">
                             <a
-                                href="{{ route('search-products') . '?parent_id=' . $product->categories->categoryParents->id }}">
+                                href="{{ route('search-products') . '?parent-id=' . $product->categories->categoryParents->id }}">
                                 {{ $product->categories->categoryParents->category_parent_nm }}
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('search-products') . '?category_id=' . $product->categories->id }}">{{ $product->categories->category_nm }}
+                            <a href="{{ route('search-products') . '?category-id=' . $product->categories->id }}">{{ $product->categories->category_nm }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $product->product_nm }}</li>
@@ -35,36 +35,25 @@
                 <div class="row mt-4">
                     <div class="col-lg-6 col-12">
                         <div class="row">
+                            @php
+                                $image_arr = explode(' ', str_replace(',', '', $product['image']));
+                            @endphp
                             <div class="col-lg-2 sub-images-box">
                                 <ul class="sub-images">
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li class="last-1">
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
+                                    @foreach ($image_arr as $item)
+                                        <li>
+                                            <img src="{{ asset('images/data_table/' . $item) }}" alt="">
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="col-lg-8">
                                 <ul class="main-images">
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li>
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
-                                    <li class="last-2">
-                                        <img src="{{ asset('images/data_table/10.jpg') }}" alt="">
-                                    </li>
+                                    @foreach ($image_arr as $item)
+                                        <li>
+                                            <img src="{{ asset('images/data_table/' . $item) }}" alt="">
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

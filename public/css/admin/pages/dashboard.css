@@ -1,0 +1,15 @@
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-text {
+    color: #fff !important;
+} 
+
+.card-icon {
+    font-size: 45px;
+    opacity: 0.5;
+    color: #fff !important;
+}

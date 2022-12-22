@@ -12,6 +12,7 @@
         body {
             height: 100vh;
             background-color: beige;
+            background-image: url('images/background_login.jpg');
         }
         form {
             position: absolute;

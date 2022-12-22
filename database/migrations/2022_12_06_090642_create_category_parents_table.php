@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('category_parents', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            // $table->string('category_parent_cd', 10)->nullable()->comment('Category Parent Code');
             $table->string('category_parent_nm', 255)->nullable()->comment('Category Parent Name');
             $table->timestamps();
         });

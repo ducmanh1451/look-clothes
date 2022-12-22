@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -40,4 +42,27 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    /**
+	 * Scope to username
+	 */
+    public function scopeOfUsername(Builder $query, Request $request)
+    {
+        $query->when($request['username'] != '', function ($query1) use ($request) {
+            $query1->where('username', $request['username']);
+        });
+        return $query;
+    }
+
+    /**
+	 * Scope to password
+	 */
+    public function scopeOfPassword(Builder $query, Request $request)
+    {
+        $query->when($request['password'] != '', function ($query1) use ($request) {
+            $query1->where('password', $request['password']);
+        });
+        return $query;
+    }
+
 }

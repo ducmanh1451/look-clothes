@@ -26,6 +26,10 @@ return new class extends Migration
             $table->string('ward', 255)->nullable()->comment('Ward');
             $table->string('product_json', 500)->nullable()->comment('Product List Information');
             $table->string('remark', 255)->nullable()->comment('Remark');
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users');
             $table->timestamps();
         });
     }

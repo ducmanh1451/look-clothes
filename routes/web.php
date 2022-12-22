@@ -5,7 +5,10 @@ use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\CartShoppingController;
 use App\Http\Controllers\User\OrdersController;
 use App\Http\Controllers\User\WarehouseController;
+
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductsAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +38,12 @@ Route::post('/kiem-tra-hang', [WarehouseController::class, 'checkProductAvailabl
 
 Route::get('/login', [LoginController::class, 'index'])->name('get-login-view');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('admin', function () {
-    return view('admin.admin_template');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware(['AuthLogined','web'])->group(function (){
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('get-dashboard-view');
+        Route::get('/products', [ProductsAdminController::class, 'index'])->name('get-product-view');
+        Route::get('/products/{id}', [ProductsAdminController::class, 'findProductById'])->name('get-product-by-id');
+    });
 });

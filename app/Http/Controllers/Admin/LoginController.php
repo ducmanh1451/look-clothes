@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -13,6 +14,9 @@ class LoginController extends Controller
      */
     public function index(Request $request)
     {
+        if (session()->has('login_session')){
+            return redirect('/admin/dashboard');
+        }
         return view('admin.pages.login');
     }
 
@@ -21,11 +25,24 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'role' => 1])) {
-            dd(1);
-        } else {
-            dd(2);
+        $user = User::ofUsername($request)
+            ->ofPassword($request)
+            ->where('role', 1)
+            ->get();
+        // logined
+        if ($user->isNotEmpty()) {
+            Session::put('login_session', $user);
+            return redirect('/admin/dashboard');
         }
     }
 
+    /**
+     * logout
+     */
+    public function logout(Request $request)
+    {
+        session()->forget('login_session');
+        $request->session()->flush();
+        return response()->json(['message' => 'Logout!', 'status' => '201']);
+    }
 }

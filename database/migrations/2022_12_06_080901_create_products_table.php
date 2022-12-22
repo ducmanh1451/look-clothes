@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            // $table->string('product_cd', 10)->nullable()->comment('Product Code');
             $table->string('product_nm', 255)->nullable()->comment('Product Name');
             $table->integer('category_id')->nullable()->comment('Category ID');
             $table->string('title', 255)->nullable()->comment('Title');
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->tinyInteger('is_new_product')->default(0)->comment('Is new product or not');
             $table->string('image', 255)->nullable()->comment('Image');
             $table->float('discount')->nullable()->comment('Discount');
-            // $table->integer('quantity')->nullable()->comment('Quantity');
             $table->index('category_id');
             $table->timestamps();
             $table

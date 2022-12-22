@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', Arial;
+    font-size: 14px;
+    line-height: 20px;
+    color: #444;
+    box-sizing: border-box;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.w-50px {
+    width: 50px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.w-300px {
+    width: 300px;
+}
+
+.page-link-selected {
+    background-color: #cacaca;
+    border-color: #cacaca;
+}
+

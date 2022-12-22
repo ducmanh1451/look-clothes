@@ -9,9 +9,13 @@
             <p>GIỎ HÀNG</p>
             <div class="cart-items">
                 @foreach ($cart_data as $key => $item)
+                    @php
+                        $product = Products::find($item['id']);
+                        $image_arr = explode(' ', str_replace(',', '', $product['image']));
+                    @endphp
                     <div class="row item" index="{{ $key }}">
                         <div class="col-3 pl-0">
-                            <img src="http://127.0.0.1:8000/images/data_table/10.jpg" alt="">
+                            <img src="{{ asset('images/data_table/' . $image_arr[0]) }}" alt="">
                         </div>
                         <div class="col-9">
                             <div class="item-info">

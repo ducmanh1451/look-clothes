@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            // $table->string('category_cd', 10)->nullable()->comment('Category Code');
             $table->string('category_nm', 255)->nullable()->comment('Category Name');
             $table->integer('category_parent_id')->nullable()->comment('Category Parent ID');
             $table->index('category_parent_id');
