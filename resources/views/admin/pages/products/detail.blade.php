@@ -42,11 +42,11 @@
                             <div class="row mb-3">
                                 <div class="col-1">
                                     <label for="id">ID</label>
-                                    <input id="id" type="text" class="form-control" readonly>
+                                    <input id="id" type="text" value="{{ $product['id'] }}" class="form-control" readonly>
                                 </div>
                                 <div class="col-11">
                                     <label for="product_nm">Tên sản phẩm</label>
-                                    <input id="product_nm" type="text" class="form-control">
+                                    <input id="product_nm" value="{{ $product['product_nm'] }}" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -97,21 +97,21 @@
                             <div class="row mb-3">
                                 <div class="col-12">
                                     <label for="title">Title</label>
-                                    <input id="title" type="text" class="form-control">
+                                    <input id="title" value="{{ $product['title'] }}" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-2">
                                     <label for="price">Đơn giá</label>
-                                    <input id="price" type="text" class="form-control">
+                                    <input id="price" value="{{ $product['price'] }}" type="text" class="form-control">
                                 </div>
                                 <div class="col-2">
                                     <label for="discount">Giảm giá</label>
-                                    <input id="discount" type="text" class="form-control">
+                                    <input id="discount" value="{{ $product['discount'] }}" type="text" class="form-control">
                                 </div>
                                 <div class="col-4">
                                     <label for="">Sản phẩm mới</label>
-                                    <div class="d-flex">
+                                    <div class="d-flex align-items-center" style="height: 60%">
                                         <div class="form-check mr-4">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                 id="check-new-product-1" />
@@ -126,7 +126,19 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-
+                                <div class="col-6">
+                                    <label for="images">Ảnh</label>
+                                    <div class="main-image">
+                                        <img src="{{ asset('images/data_table/33.jpg') }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="images">&nbsp;</label>
+                                    <div class="thumbnail mb-3 d-none">
+                                        <img src="" alt="">
+                                    </div>
+                                    <input type="file" class="form-control" id="customFile" />
+                                </div>
                             </div>
                         </div>
                     </div>

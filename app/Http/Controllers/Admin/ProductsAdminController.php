@@ -28,8 +28,9 @@ class ProductsAdminController extends Controller
     public function findProductById(Request $request)
     {
         $id = last($request->segments());
+        $product = Products::find($id);
         return view('admin.pages.products.detail', [
-            // 'products' => $products, 
+            'product' => $product, 
             'title' => 'Chi tiết sản phẩm'
         ]);
     }

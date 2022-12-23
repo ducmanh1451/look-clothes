@@ -1,6 +1,7 @@
 @php
     use App\Models\Colors;
     use App\Models\Sizes;
+    use App\Models\Products;
     use Illuminate\Support\Facades\Cache;
 @endphp
 @extends('user.user_layout')
@@ -86,13 +87,18 @@
                         @if ($check_cart_empty == false)
                             <div class="cart-items mt-5" style="overflow: unset; max-height: unset">
                                 @foreach ($products as $key => $item)
+                                    @php
+                                        $product = Products::find($item['id']);
+                                        $image_arr = explode(' ', str_replace(',', '', $product['image']));
+                                    @endphp
                                     <div class="row item list-item" index="{{ $key }}">
                                         <input class="product-id" value="{{ $item['id'] }}" type="hidden" name="id">
                                         <input class="size" value="{{ $item['size'] }}" type="hidden" name="size">
                                         <input class="color" value="{{ $item['color'] }}" type="hidden" name="color">
-                                        <input class="quantity" value="{{ $item['quantity'] }}" type="hidden" name="quantity">
+                                        <input class="quantity" value="{{ $item['quantity'] }}" type="hidden"
+                                            name="quantity">
                                         <div class="col-sm-3 col-12 pl-0">
-                                            <img src="http://127.0.0.1:8000/images/data_table/10.jpg" alt="">
+                                            <img src="{{ asset('images/data_table/' . $image_arr[0]) }}" alt="">
                                         </div>
                                         <div class="col-sm-9 col-12">
                                             <div class="item-info">
