@@ -89,7 +89,7 @@
                                                             $image_arr = explode(' ', str_replace(',', '', $item['image']));
                                                         @endphp
                                                         @foreach ($image_arr as $image)
-                                                            <img src="{{ asset('images/data_table/' . $image) }}"
+                                                            <img src="{{ asset('images/database/' . $image) }}"
                                                                 alt="">
                                                         @endforeach
                                                     </div>

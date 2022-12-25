@@ -32,7 +32,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light pt-4 pb-4">
                     <div class="container-fluid">
                         <a class="navbar-brand logo" href="{{ route('products') }}">
-                            <img class="img-fluid" src="{{ asset('images/logo.png') }}">
+                            <img class="img-fluid" src="{{ asset('images/system/logo.png') }}">
                         </a>
                         <div class="navbar-collapse justify-content-between position-relative">
                             {{-- Default Menu --}}
@@ -125,7 +125,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                             <a class="navbar-brand logo" href="/">
-                                <img class="img-fluid" src="{{ asset('images/logo.png') }}">
+                                <img class="img-fluid" src="{{ asset('images/system/logo.png') }}">
                             </a>
                             <a class="func-item open-cart-btn">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -138,7 +138,7 @@
         {{-- End Header --}}
 
         {{-- Banner --}}
-        @yield('banner')
+        {{-- @yield('banner') --}}
         {{-- End Banner --}}
 
         {{-- Main Content --}}
@@ -270,7 +270,7 @@
                                     <ul class="menu-footer">
                                         <li>
                                             <a href="/">
-                                                <img src="{{ asset('images/regis-ministry.png') }}" alt="">
+                                                <img src="{{ asset('images/system/regis-ministry.png') }}" alt="">
                                             </a>
                                         </li>
                                         <li>

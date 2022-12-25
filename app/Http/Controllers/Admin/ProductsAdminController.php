@@ -34,4 +34,9 @@ class ProductsAdminController extends Controller
             'title' => 'Chi tiết sản phẩm'
         ]);
     }
+
+    public function store(Request $request) 
+    {
+        dd($request->all());
+    }
 }

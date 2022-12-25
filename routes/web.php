@@ -45,5 +45,6 @@ Route::middleware(['AuthLogined','web'])->group(function (){
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('get-dashboard-view');
         Route::get('/products', [ProductsAdminController::class, 'index'])->name('get-product-view');
         Route::get('/products/{id}', [ProductsAdminController::class, 'findProductById'])->name('get-product-by-id');
+        Route::post('/store', [ProductsAdminController::class, 'store'])->name('store-product');
     });
 });

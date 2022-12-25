@@ -25,14 +25,14 @@
                                 @php
                                     $image_arr = explode(' ', str_replace(',', '', $product['image']));
                                 @endphp
-                                <img src="{{ asset('images/data_table/' . $image_arr[0]) }}" alt=""
+                                <img src="{{ asset('images/database/' . $image_arr[0]) }}" alt=""
                                     class="img-fluid">
                             </a>
                             <h3 class="p-name">
                                 <a href="{{ route('detail-products', $product['id']) }}" title="{{ $product['title'] }}"
                                     class="name">{{ $product['product_nm'] }}</a>
                                 @if ($product['is_new_product'] == 1) 
-                                <img style="width: 20px; height: 20px" src="{{ asset('images/new-product.png')}}" alt="">
+                                <img style="width: 20px; height: 20px" src="{{ asset('images/system/new-product.png')}}" alt="">
                                 @endif
                             </h3>
                             <p class="p-price">{{ $product['price'] }} VND</p>

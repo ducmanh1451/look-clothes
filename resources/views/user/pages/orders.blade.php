@@ -98,7 +98,7 @@
                                         <input class="quantity" value="{{ $item['quantity'] }}" type="hidden"
                                             name="quantity">
                                         <div class="col-sm-3 col-12 pl-0">
-                                            <img src="{{ asset('images/data_table/' . $image_arr[0]) }}" alt="">
+                                            <img src="{{ asset('images/database/' . $image_arr[0]) }}" alt="">
                                         </div>
                                         <div class="col-sm-9 col-12">
                                             <div class="item-info">

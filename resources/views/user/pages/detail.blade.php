@@ -42,7 +42,7 @@
                                 <ul class="sub-images">
                                     @foreach ($image_arr as $item)
                                         <li>
-                                            <img src="{{ asset('images/data_table/' . $item) }}" alt="">
+                                            <img src="{{ asset('images/database/' . $item) }}" alt="">
                                         </li>
                                     @endforeach
                                 </ul>
@@ -51,7 +51,7 @@
                                 <ul class="main-images">
                                     @foreach ($image_arr as $item)
                                         <li>
-                                            <img src="{{ asset('images/data_table/' . $item) }}" alt="">
+                                            <img src="{{ asset('images/database/' . $item) }}" alt="">
                                         </li>
                                     @endforeach
                                 </ul>
