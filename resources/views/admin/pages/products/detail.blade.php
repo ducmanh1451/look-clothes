@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="{{ route('store-product') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update-product') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-header">
@@ -36,7 +36,7 @@
                                     <div class="col-3">
                                         <div class="left">
                                             <button type="submit" class="btn btn-secondary">Lưu thông tin</button>
-                                            <button type="button" class="btn btn-danger">Xóa sản phẩm</button>
+                                            <button id="btn-delete" type="button" class="btn btn-danger">Xóa sản phẩm</button>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                 <div class="row mb-3">
                                     <div class="col-3">
                                         <label for="category_id">Loại sản phẩm</label>
-                                        <select id="category_id" class="custom-select">
+                                        <select name="category_id" id="category_id" class="custom-select">
                                             <option value="-1">Chọn loại sản phẩm</option>
                                             @foreach ($categories as $item)
                                                 <option @if ($product['category_id'] == $item->id) selected @endif
@@ -77,13 +77,15 @@
                                             @foreach ($colors as $item)
                                                 <div class="form-check mr-4">
                                                     <input @if (in_array($item->id, $color_arr)) checked @endif
-                                                        class="form-check-input" type="checkbox" value="{{ $item->id }}"
-                                                        id="{{ 'color_' . $item->id }}">
+                                                        class="form-check-input color" type="checkbox"
+                                                        value="{{ $item->id }}" id="{{ 'color_' . $item->id }}">
                                                     <label class="form-check-label" for="{{ 'color_' . $item->id }}">
                                                         {{ $item->color_nm }}
                                                     </label>
                                                 </div>
                                             @endforeach
+                                            <input id="color_hidden" type="hidden" name="color"
+                                                value="{{ $product['color'] }}">
                                         </div>
                                     </div>
                                 </div>
@@ -97,13 +99,15 @@
                                             @foreach ($sizes as $item)
                                                 <div class="form-check mr-4">
                                                     <input @if (in_array($item->id, $size_arr)) checked @endif
-                                                        class="form-check-input" type="checkbox"
+                                                        class="form-check-input size" type="checkbox"
                                                         value="{{ $item->id }}" id="{{ 'size_' . $item->id }}">
                                                     <label class="form-check-label" for="{{ 'size_' . $item->id }}">
                                                         {{ $item->size_nm }}
                                                     </label>
                                                 </div>
                                             @endforeach
+                                            <input id="size_hidden" type="hidden" name="size"
+                                                value="{{ $product['size'] }}">
                                         </div>
                                     </div>
                                 </div>
@@ -129,16 +133,20 @@
                                         <label for="">Sản phẩm mới</label>
                                         <div class="d-flex align-items-center" style="height: 60%">
                                             <div class="form-check mr-4">
-                                                <input @if ($product['is_new_product'] == 1) checked @endif
-                                                    class="form-check-input" type="radio" id="check-new-product-1" />
+                                                <input @if ($product['is_new_product'] == 1) checked @endif data-value="1"
+                                                    class="form-check-input is_new_product" type="radio"
+                                                    id="check-new-product-1" />
                                                 <label class="form-check-label" for="check-new-product-1">Có</label>
                                             </div>
                                             <div class="form-check mr-4">
-                                                <input @if ($product['is_new_product'] == 0) checked @endif
-                                                    class="form-check-input" type="radio" id="check-new-product-2" />
+                                                <input @if ($product['is_new_product'] == 0) checked @endif data-value="0"
+                                                    class="form-check-input is_new_product" type="radio"
+                                                    id="check-new-product-2" />
                                                 <label class="form-check-label" for="check-new-product-2">Không</label>
                                             </div>
                                         </div>
+                                        <input id="is_new_product_hidden" type="hidden" name="is_new_product"
+                                            value="{{ $product['is_new_product'] }}">
                                     </div>
                                 </div>
                                 @php
@@ -147,23 +155,18 @@
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <label for="image">Ảnh</label>
+                                        <div class="images-box">
+                                            @foreach ($image_arr as $image)
+                                                <img src="{{ asset('images/database/' . $image) }}">
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label>&nbsp;</label>
+                                        <div class="images-box thumbnail d-none" style="margin-bottom: 15px">
+                                        </div>
                                         <input id="image" type="file" class="form-control" name="images[]"
                                             multiple />
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="images">
-                                            <div class="row w-100">
-                                                @foreach ($image_arr as $image)
-                                                    <div class="item col-3">
-                                                        <div class="delete-img-btn">
-                                                            <i class="fas fa-times"></i>
-                                                        </div>
-                                                        <img class="w-100"
-                                                            src="{{ asset('images/database/' . $image) }}">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

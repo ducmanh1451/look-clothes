@@ -5,10 +5,14 @@ use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\CartShoppingController;
 use App\Http\Controllers\User\OrdersController;
 use App\Http\Controllers\User\WarehouseController;
-
+// 
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductsAdminController;
+use App\Http\Controllers\Admin\WarehouseAdminController;
+use App\Http\Controllers\Admin\OrdersAdminController;
+use App\Http\Controllers\Admin\CustomersAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +47,23 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['AuthLogined','web'])->group(function (){
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('get-dashboard-view');
+        // Product route
         Route::get('/products', [ProductsAdminController::class, 'index'])->name('get-product-view');
         Route::get('/products/{id}', [ProductsAdminController::class, 'findProductById'])->name('get-product-by-id');
-        Route::post('/store', [ProductsAdminController::class, 'store'])->name('store-product');
+        Route::post('/products/create', [ProductsAdminController::class, 'create'])->name('create-product');
+        Route::post('/products/update', [ProductsAdminController::class, 'update'])->name('update-product');
+        Route::post('/products/delete', [ProductsAdminController::class, 'delete'])->name('delete-product');
+        // Warehouse route
+        Route::get('/warehouse', [WarehouseAdminController::class, 'index'])->name('get-warehouse-view');
+        Route::get('/warehouse/{id}', [WarehouseAdminController::class, 'findProductById'])->name('find-product-by-id');
+        Route::post('/warehouse/create', [WarehouseAdminController::class, 'create'])->name('create-warehouse');
+        Route::post('/warehouse/update', [WarehouseAdminController::class, 'update'])->name('update-warehouse');
+        // Order route
+        Route::get('/orders', [OrdersAdminController::class, 'index'])->name('get-order-view');
+        Route::get('/orders/{id}', [OrdersAdminController::class, 'findOrderById'])->name('find-order-by-id');
+        Route::post('/orders/update', [OrdersAdminController::class, 'update'])->name('update-order');
+        Route::post('/orders/delete', [OrdersAdminController::class, 'delete'])->name('delete-order');
+        // Customer route
+        Route::get('/customers', [CustomersAdminController::class, 'index'])->name('get-customer-view');
     });
 });

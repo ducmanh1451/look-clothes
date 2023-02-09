@@ -152,6 +152,7 @@
                                         <div class="total-money">
                                             {{ $total_price }} VND
                                         </div>
+                                        <input class="bs-input" type="hidden" value="{{ number_format((float)$total_price, 2, '.', '') }}" name="total_money">
                                     </div>
                                 </div>
                             </div>

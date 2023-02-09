@@ -64,6 +64,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
+                            <a href="{{ route('get-dashboard-view') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-home"></i>
+                                <p>
+                                    Trang chủ
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('get-product-view') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-cart-shopping"></i>
                                 <p>
@@ -71,6 +79,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('get-warehouse-view') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-warehouse"></i>
+                                <p>
+                                    Kho hàng
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('get-order-view') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-bag-shopping"></i>
+                                <p>
+                                    Đơn hàng
+                                </p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('get-customer-view') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-user"></i>
+                                <p>
+                                    Khách hàng
+                                </p>
+                            </a>
+                        </li> --}}
                     </ul>
                 </nav>
             </div>
@@ -99,6 +131,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    {{-- Sweetalert2 --}}
+    <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.all.min.js') }}"></script>
     {{-- Common Admin --}}
     <script src="{{ asset('js/admin/common/common.js') }}"></script>
     @yield('asset_footer')

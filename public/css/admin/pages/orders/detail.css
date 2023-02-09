@@ -1,0 +1,21 @@
+.list-products {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+
+.product {
+    width: min-content;
+    padding-right: 15px;
+}
+
+.product-nm, 
+.color,
+.size,
+.quantity {
+    margin-bottom: 0;
+}
+
+.product-nm {
+    margin-top: 15px;
+}

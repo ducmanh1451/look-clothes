@@ -15,4 +15,5 @@ class Sizes extends Model
     {
         return Sizes::find($id)->size_nm;
     }
+    
 }

@@ -1,0 +1,11 @@
+.table-div {
+    display: block;
+    width: 100%;
+    height: 700px;
+    overflow-x: auto;
+}
+
+.table-div table {
+    overflow: hidden;
+    width: 2000px;
+}

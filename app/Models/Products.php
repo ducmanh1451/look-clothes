@@ -13,6 +13,8 @@ class Products extends Model
     use HasFactory;
 
     protected $table = 'products';
+    protected $fillable = ['product_nm', 'category_id', 'title', 'price', 'color', 'size', 'is_new_product', 'image', 'discount'];
+
 
     public function categories()
     {
@@ -64,5 +66,14 @@ class Products extends Model
             $id_arr[] = $category->id;
         }
         return $id_arr;
+    }
+
+    /**
+	 * Get product name
+	 */
+    public static function getProductName($id)
+    {
+        $product_nm = Products::where('id', $id)->value('product_nm');
+        return $product_nm;
     }
 }

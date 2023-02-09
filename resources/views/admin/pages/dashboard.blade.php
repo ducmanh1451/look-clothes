@@ -30,6 +30,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3">
+                    <div class="card" style="background-color: #28a745">
+                        <div class="card-body">
+                            <a class="cart-item" href="{{ route('get-warehouse-view') }}">
+                                <p class="card-text">
+                                    KHO HÀNG
+                                </p>
+                                <i class="fa-solid fa-warehouse card-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card" style="background-color: #ffc107">
+                        <div class="card-body">
+                            <a class="cart-item" href="{{ route('get-order-view') }}">
+                                <p class="card-text">
+                                    ĐƠN HÀNG
+                                </p>
+                                <i class="fa-solid fa-bag-shopping card-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

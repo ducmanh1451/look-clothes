@@ -42,3 +42,7 @@ ul {
     border-color: #cacaca;
 }
 
+.lbl_required {
+    color: red;
+}
+

@@ -2,7 +2,7 @@
 @section('meta_title', $title)
 
 @section('asset_header')
-    <link rel="stylesheet" href="{{ asset('css/admin/pages/products/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/pages/warehouse/index.css') }}">
 @endsection
 
 @section('content')
@@ -30,10 +30,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                @php
-                                    use App\Models\Categories;
-                                    $categories = Categories::all();
-                                @endphp
                                 <div class="col-9">
                                     <div class="right d-flex justify-content-end">
                                         <div class="col-3 d-flex justify-content-end">
@@ -41,14 +37,14 @@
                                                 phẩm</button>
                                         </div>
                                         <div class="col-4">
-                                            <select id="categories" class="custom-select">
-                                                <option value="-1">Chọn loại sản phẩm</option>
-                                                @foreach ($categories as $item)
-                                                    <option @if (Request::get('category-id') == $item->id) selected @endif
-                                                        value="{{ $item->id }}">{{ $item->category_nm }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-search"></i>
+                                                    </span>
+                                                </div>
+                                                <input @if(Request::get('product_nm')) value="{{ Request::get('product_nm') }}" @endif type="text" name="product_nm" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -59,45 +55,31 @@
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="w-50px" scope="col">ID</th>
-                                            <th class="w-200px" scope="col">Product Name</th>
-                                            <th class="w-50px" scope="col">Category ID</th>
-                                            <th class="w-200px" scope="col">Title</th>
-                                            <th class="w-100px" scope="col">Price</th>
-                                            <th class="w-100px" scope="col">Color</th>
-                                            <th class="w-100px" scope="col">Size</th>
-                                            <th class="w-100px" scope="col">Is New Product</th>
-                                            <th class="w-300px" scope="col">Images</th>
-                                            <th class="w-50px" scope="col">Discount</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Mã sản phẩm</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Mã màu</th>
+                                            <th scope="col">Tên màu</th>
+                                            <th scope="col">Mã size</th>
+                                            <th scope="col">Tên size</th>
+                                            <th scope="col">Số lượng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($products as $item)
                                             <tr>
                                                 <th scope="row">
-                                                    <a href="{{ route('get-product-by-id', $item->id) }}">
+                                                    <a href="{{ route('find-product-by-id', $item->id) }}">
                                                         {{ $item->id }}
                                                     </a>
                                                 </th>
+                                                <td>{{ $item->product_id }}</td>
                                                 <td>{{ $item->product_nm }}</td>
-                                                <td>{{ $item->category_id }}</td>
-                                                <td>{{ $item->title }}</td>
-                                                <td>{{ $item->price }}</td>
-                                                <td>{{ $item->color }}</td>
-                                                <td>{{ $item->size }}</td>
-                                                <td>{{ $item->is_new_product }}</td>
-                                                <td>
-                                                    <div class="images-box">
-                                                        @php
-                                                            $image_arr = explode(' ', str_replace(',', '', $item['image']));
-                                                        @endphp
-                                                        @foreach ($image_arr as $image)
-                                                            <img src="{{ asset('images/database/' . $image) }}"
-                                                                alt="">
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                                <td>{{ $item->discount }}</td>
+                                                <td>{{ $item->color_id }}</td>
+                                                <td>{{ $item->color_nm }}</td>
+                                                <td>{{ $item->size_id }}</td>
+                                                <td>{{ $item->size_nm }}</td>
+                                                <td>{{ $item->quantity }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -133,6 +115,6 @@
 @endsection
 
 @section('asset_footer')
-    <script src="{{ asset('js/admin/pages/products/products.js') }}"></script>
-    @include('admin.pages.products.create')
+    <script src="{{ asset('js/admin/pages/warehouse/warehouse.js') }}"></script>
+    @include('admin.pages.warehouse.create')
 @endsection
