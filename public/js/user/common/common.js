@@ -52,6 +52,9 @@ function initEvents() {
         $(document).on('click', '.category', function() {
             var category_id = $(this).attr('category-id');
             var path_nm = window.location.pathname;
+            if (path_nm != '/san-pham') {
+                path_nm = '/san-pham';
+            }
             window.location = `${path_nm}?category-id=${category_id}`;
         });
         // click search btn

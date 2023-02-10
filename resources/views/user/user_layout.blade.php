@@ -77,7 +77,7 @@
                                     <li class="level0-item">
                                         <a class="nav-link" href="{{ route('sale-products') }}">Sale</a>
                                     </li>
-                                    <li class="level0-item">
+                                    {{-- <li class="level0-item">
                                         <a class="nav-link" href="/gioi-thieu">Về chúng tôi</a>
                                         <ul class="level1-list p-0">
                                             <li class="level1-item border-bottom">
@@ -93,7 +93,7 @@
                                                 <a href="/gioi-thieu">Về chúng tôi</a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <div class="main-funcs d-flex align-items-center">
@@ -104,7 +104,7 @@
                                         <i class="fa fa-search"></i>
                                     </a>
                                 </div>
-                                <a class="func-item" href="/dang-nhap">Đăng nhập</a>
+                                {{-- <a class="func-item" href="/dang-nhap">Đăng nhập</a> --}}
                                 <a class="func-item open-cart-btn" data-bs-toggle="collapse" href="#collapse-cart" role="button">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
