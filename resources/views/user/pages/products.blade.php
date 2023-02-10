@@ -35,7 +35,13 @@
                                 <img style="width: 20px; height: 20px" src="{{ asset('images/system/new-product.png')}}" alt="">
                                 @endif
                             </h3>
+                            @if ($product['discount'] != 0)
+                            <p class="p-price">{{ $product['price'] }} VND
+                                <span style="color: red">SALE {{ $product['discount']*100 }}%</span>
+                            </p>
+                            @else
                             <p class="p-price">{{ $product['price'] }} VND</p>
+                            @endif
                             <p class="p-box-color">
                                 @php
                                     $color_arr = explode(' ', str_replace(',', '', $product['color']));

@@ -72,6 +72,16 @@
                                     placeholder="Ghi chú thêm (Ví dụ: Giao hàng giờ hành chính)">
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="d-flex" style="padding: 15px; border: 1px solid #ccc; border-radius: 16px; opacity: 0.7">
+                                    <input type="radio" name="" id="" checked style="margin-top: 1px; margin-right: 5px">
+                                    <div>
+                                        THANH TOÁN TRỰC TIẾP
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mt-5">
                             <div class="col-12">
                                 <button id="confirm-btn" class="bs-button">
